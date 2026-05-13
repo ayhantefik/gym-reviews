@@ -1,0 +1,44 @@
+.home{
+    padding: 20px;
+}
+.gym-list{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 3em;
+    padding: 20px;
+}
+.gym-list-row{
+    height: 160px;
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    text-align: left;
+    gap: 1em;
+    padding: 20px;
+    border-radius: 8px;
+}
+.gym-list-row:hover{
+    box-shadow: 0 0 10px #d9d9d9;
+}
+.gym-list-row img{
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+}
+.gym-info{
+    display: flex;
+    flex-direction: column;
+    gap: 0.3em;
+}
+.gym-review{
+    width: 30px;
+    height: 30px;
+    background-color: rgb(46, 46, 46);
+    color: rgb(207, 207, 207);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+}
