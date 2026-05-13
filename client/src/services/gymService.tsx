@@ -11,3 +11,16 @@ export const getGyms = async () => {
         throw error;
     }
 }
+
+export const addGym = async (gym: Gym, token: string | undefined): Promise<Gym> => {
+    try {
+        const response: AxiosResponse<Gym> = await api.post('/gyms', gym, { 
+            headers: {
+                Authorization: `Bearer ${token}`
+        }});
+        return response.data;
+    } catch (error) {
+        console.error("Error adding gym", error);
+        throw error;
+    }
+};

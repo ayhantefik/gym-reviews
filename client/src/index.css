@@ -113,3 +113,11 @@ code {
 a {
   cursor: pointer;
 }
+
+button {
+  cursor: pointer;
+}
+
+input:focus{
+  outline: none;
+}
