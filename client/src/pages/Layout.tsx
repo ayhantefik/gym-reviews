@@ -14,6 +14,7 @@ function Layout(){
             <header>
                 <div className="header-menu">
                     <a role="button" className="header-menu-item" onClick={() => navigate("/")}>Home</a>
+                    {user && (<a role="button" className="header-menu-item" onClick={() => navigate("profile")}>Profile</a>)}
                     {user ? (
                         <a role="button" className="header-menu-item" onClick={handleSignOut}>Logout</a>
                     ) : (

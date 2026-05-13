@@ -23,9 +23,6 @@ export const useAuthService = () => {
             const result = await signInWithPopup(auth, googleProvider);
             const loggedInUser = result.user;
 
-            const token = await loggedInUser.getIdToken(true);
-            localStorage.setItem("token", token);
-
             console.log("loggedInUser ", loggedInUser);
             setUser(loggedInUser as User);
             navigate("/");
@@ -37,7 +34,6 @@ export const useAuthService = () => {
     const handleSignOut = async () => {
         try {
             await signOut(auth);
-            localStorage.removeItem("token");
             setUser(null);
             navigate("/login");
         } catch (error) {
