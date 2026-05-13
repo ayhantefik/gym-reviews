@@ -4,7 +4,6 @@ import type { User } from "../types/index";
 import { UserContext } from "../context/UserContext";
 import {
   GoogleAuthProvider,
-  signInWithEmailAndPassword,
   getAuth,
   signInWithPopup,
   signOut,
@@ -22,7 +21,6 @@ export const useAuthService = () => {
         try {
             const result = await signInWithPopup(auth, googleProvider);
             const loggedInUser = result.user;
-
             console.log("loggedInUser ", loggedInUser);
             setUser(loggedInUser as User);
             navigate("/");
