@@ -3,6 +3,7 @@ import cors from "cors";
 import { seedGyms } from "./src/data/seed.js";
 import mongoose from "mongoose";
 import gymRoute from "./src/routes/gyms.ts"
+import reviewRoute from "./src/routes/reviews.ts"
 
 const app = express();
 
@@ -14,6 +15,7 @@ const PORT = 3000;
 mongoose.connect("mongodb://localhost:27017/gym-reviews-db");
 
 app.use("/gyms", gymRoute);
+app.use("/reviews", reviewRoute);
 
 async function startServer() {
 

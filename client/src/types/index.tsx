@@ -1,4 +1,5 @@
 export interface User {
+    uid: string;
     displayName: string;
     email: string;
     photoURL: string;
@@ -6,8 +7,15 @@ export interface User {
 }
 
 export interface Gym {
-    id?: string;
+    _id?: string;
     name: string;
     city: string;
     address: string;
+}
+
+export interface Review {
+    _id?: string;
+    gymId: string;
+    uid: string;
+    rating: number;
 }
