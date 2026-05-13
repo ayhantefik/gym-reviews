@@ -59,3 +59,20 @@
 .add-btn:hover {
   background-color: #464646;
 }
+.ratings{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    gap: 0.2em;
+}
+
+.ratings span {
+  color: #ccc;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.ratings span:hover,
+.ratings span:hover ~ span {
+  color: #FFC107;
+}
