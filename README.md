@@ -72,7 +72,7 @@ VITE_API_URL
 
 ## Unit tests
 
-<img width="689" height="301" alt="image" src="https://github.com/user-attachments/assets/f73a69f3-3cc0-477f-ae2e-5d06d7035095" />
+<img width="700" height="246" alt="image" src="https://github.com/user-attachments/assets/a5e8e7c9-36d7-4dc1-a34c-253c63af675d" />
 
 ## Integration tests
 
