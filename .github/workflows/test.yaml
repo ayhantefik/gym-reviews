@@ -48,7 +48,7 @@ jobs:
           ISSUER: ${{ secrets.ISSUER }}
 
       - name: Install client dependencies
-        run: npm ci
+        run: npm test
         working-directory: ./client
 
       - name: Run client tests
