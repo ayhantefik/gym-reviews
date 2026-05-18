@@ -67,3 +67,8 @@ VITE_FIREBASE_MESSAGING_SENDER_ID
 VITE_FIREBASE_APP_ID
 VITE_API_URL
 ```
+
+# Tests
+
+<img width="683" height="405" alt="image" src="https://github.com/user-attachments/assets/a22322c1-f464-489e-890c-aad795109cdb" />
+
