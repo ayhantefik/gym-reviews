@@ -23,7 +23,7 @@ router.post(
     try {
         const newReview = new Review(req.body);
         await newReview.save();
-        res.json(newReview);
+        res.status(201).json(newReview);
     } catch (error) {
         console.log(error);
     }

@@ -35,7 +35,7 @@ router.post(
     try {
         const newGym = new Gym(req.body);
         await newGym.save();
-        res.json(newGym);
+        res.status(201).json(newGym);
     } catch (error) {
         console.log(error);
     }
