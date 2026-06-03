@@ -5,6 +5,7 @@ const buffer = await readFile(
     new URL("../../firebaseServiceAccountKey.json", import.meta.url)
 );
 
+
 const serviceAccount = JSON.parse(buffer.toString());
 
 admin.initializeApp({
