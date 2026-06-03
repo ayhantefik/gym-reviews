@@ -46,6 +46,7 @@ jobs:
           SECRET: ${{ secrets.SECRET }}
           CLIENT_ID: ${{ secrets.CLIENT_ID }}
           ISSUER: ${{ secrets.ISSUER }}
+          ATLAS_URL: ${{ secrets.ATLAS_URL }}
 
       - name: Install client dependencies
         run: npm install
@@ -61,5 +62,4 @@ jobs:
           VITE_FIREBASE_STORAGE_BUCKET: ${{ secrets.VITE_FIREBASE_STORAGE_BUCKET }}
           VITE_FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.VITE_FIREBASE_MESSAGING_SENDER_ID }}
           VITE_FIREBASE_APP_ID: ${{ secrets.VITE_FIREBASE_APP_ID }}
-          ATLAS_URL: ${{ secrets.ATLAS_URL }}
 
