@@ -1,4 +1,5 @@
 import admin from "firebase-admin";
+import fs from "fs";
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -14,7 +15,10 @@ if (!FIREBASE_ACCOUNT_KEY) {
     throw new Error("FIREBASE_ACCOUNT_KEY is missing");
 }
 
-const serviceAccount = require(FIREBASE_ACCOUNT_KEY);
+const serviceAccount = JSON.parse(
+    fs.readFileSync(FIREBASE_ACCOUNT_KEY, "utf-8")
+);
+
 
 admin.credential.cert(serviceAccount)
 
