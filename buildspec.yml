@@ -16,10 +16,13 @@ phases:
     commands:
       - echo Build started on `date`
       - cd client
+      - npm install
+      - npm run build
       - docker build -t $REPOSITORY_URI_CLIENT:latest .
       - docker tag $REPOSITORY_URI_CLIENT:latest $REPOSITORY_URI_CLIENT:$IMAGE_TAG
       - cd ..
       - cd server
+      - npm install
       - docker build -t $REPOSITORY_URI_SERVER:latest .
       - docker tag $REPOSITORY_URI_SERVER:latest $REPOSITORY_URI_SERVER:$IMAGE_TAG
   post_build:
