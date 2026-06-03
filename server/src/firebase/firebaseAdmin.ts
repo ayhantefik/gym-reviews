@@ -1,31 +1,14 @@
 import admin from "firebase-admin";
-import fs from "fs";
-import dotenv from 'dotenv';
-dotenv.config();
+import { readFile } from "fs/promises";
 
-// import { readFile } from "fs/promises";
-
-// const buffer = await readFile(
-//     new URL("../../firebaseServiceAccountKey.json", import.meta.url)
-// );
-
-const FIREBASE_ACCOUNT_KEY = process.env.FIREBASE_SERVICE_ACCOUNT_KEY_PATH;
-
-if (!FIREBASE_ACCOUNT_KEY) {
-    throw new Error("FIREBASE_ACCOUNT_KEY is missing");
-}
-
-const serviceAccount = JSON.parse(
-    fs.readFileSync(FIREBASE_ACCOUNT_KEY, "utf-8")
+const buffer = await readFile(
+    new URL("../../firebaseServiceAccountKey.json", import.meta.url)
 );
 
+const serviceAccount = JSON.parse(buffer.toString());
 
-admin.credential.cert(serviceAccount)
-
-// const serviceAccount = JSON.parse(buffer.toString());
-
-// admin.initializeApp({
-//     credential: admin.credential.cert(serviceAccount),
-// });
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+});
 
 export default admin;
