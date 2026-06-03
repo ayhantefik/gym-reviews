@@ -15,7 +15,6 @@ COPY . .
 
 # Compile TypeScript to JavaScript
 RUN npm run build
-COPY .env ./dist/
 WORKDIR ./dist
 
 # Expose the application's port
