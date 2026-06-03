@@ -23,13 +23,12 @@ if (!CONNECTION_STRING) {
     throw new Error("CONNECTION_STRING is missing");
 }
 
-mongoose.connect(CONNECTION_STRING);
-
 app.use("/gyms", gymRoute);
 app.use("/reviews", reviewRoute);
 
 await seedGyms();
 
 export const server = app.listen(PORT, () => {
+  mongoose.connect(CONNECTION_STRING);
   console.log(`Server running on port ${PORT}`);
 });
