@@ -1,7 +1,7 @@
 {
   "type": "module",
   "scripts": {
-    "build": "tsc",
+    "start": "tsx index.ts",
     "dev": "tsx index.ts",
     "test": "vitest"
   },
