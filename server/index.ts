@@ -15,7 +15,7 @@ app.use(express.json());
 
 const PORT = 3000;
 
-const CONNECTION_STRING = process.env.atlas_URL;
+const CONNECTION_STRING = process.env.ATLAS_URL;
 
 console.log("CONNECTION_STRING ", CONNECTION_STRING)  
 
