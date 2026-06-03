@@ -1,4 +1,7 @@
 import admin from "firebase-admin";
+import dotenv from 'dotenv';
+dotenv.config();
+
 // import { readFile } from "fs/promises";
 
 // const buffer = await readFile(
@@ -8,7 +11,7 @@ import admin from "firebase-admin";
 const FIREBASE_ACCOUNT_KEY = process.env.FIREBASE_SERVICE_ACCOUNT_KEY_PATH;
 
 if (!FIREBASE_ACCOUNT_KEY) {
-    throw new Error("CONNECTION_STRING is missing");
+    throw new Error("FIREBASE_ACCOUNT_KEY is missing");
 }
 
 const serviceAccount = require(FIREBASE_ACCOUNT_KEY);
