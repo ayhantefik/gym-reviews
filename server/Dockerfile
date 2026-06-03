@@ -1,24 +1,11 @@
-# Use an official Node.js runtime as the base image
-FROM node:18-alpine
+FROM node:lts-alpine3.23
 
-# Set the working directory inside the container
-WORKDIR /app
+WORKDIR /usr/src/app
 
-# Copy package.json and package-lock.json (or yarn.lock) first to leverage Docker caching
-COPY package*.json ./
+COPY package.json package-lock.json ./
 
-# Install dependencies
-RUN npm install
+RUN npm ci
 
-# Copy the rest of the application files
 COPY . .
 
-# Compile TypeScript to JavaScript
-RUN npm run build
-WORKDIR ./dist
-
-# Expose the application's port
-EXPOSE 3000
-
-# Command to start the application
-CMD node src/index.js
+CMD ["npm run db:deploy && npm run dev"]
