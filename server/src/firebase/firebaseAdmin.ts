@@ -1,6 +1,6 @@
 import admin from "firebase-admin";
 
-const fireBaseJson = process.env.FIREBASE_SERVICE_ACCOUNT_KEY;
+const fireBaseJson = process.env.FIREBASE_SERVICE_ACCOUNT_KEY_PATH;
 
 if (!fireBaseJson) {
   throw new Error("FIREBASE_SERVICE_ACCOUNT_KEY is missing");
@@ -9,7 +9,7 @@ if (!fireBaseJson) {
 console.log(fireBaseJson);
 console.log("HERE....................");
 
-const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY!);
+const serviceAccount = JSON.parse(fireBaseJson);
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
