@@ -1,15 +1,32 @@
 import admin from "firebase-admin";
-import dotenv from "dotenv";
-import fs from "fs";
+import { readFile } from "fs/promises";
 
-dotenv.config();
-
-const serviceAccount = JSON.parse(
-  fs.readFileSync(process.env.FIREBASE_SERVICE_ACCOUNT_KEY_PATH!, "utf8")
+const buffer = await readFile(
+    new URL("../../firebaseServiceAccountKey.json", import.meta.url)
 );
+
+
+const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY!);
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
 });
 
 export default admin;
+
+// import admin from "firebase-admin";
+// import dotenv from "dotenv";
+// import fs from "fs";
+
+
+// dotenv.config();
+
+// const serviceAccount = JSON.parse(
+//   fs.readFileSync(process.env.FIREBASE_SERVICE_ACCOUNT_KEY_PATH!, "utf8")
+// );
+
+// admin.initializeApp({
+//     credential: admin.credential.cert(serviceAccount),
+// });
+
+// export default admin;
