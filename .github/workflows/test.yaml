@@ -10,6 +10,15 @@ on:
       - master
 
 jobs:
+  use-atlas-cli:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Setup AtlasCLI
+        uses: mongodb/atlas-github-action@v0.2.0
+      - name: Use AtlasCLI
+        shell: bash
+        run: atlas --version # Print Atlas CLI Version
   test:
     runs-on: ubuntu-latest
 
