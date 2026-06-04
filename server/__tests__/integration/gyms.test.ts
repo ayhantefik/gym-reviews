@@ -1,28 +1,28 @@
-import { describe, test, expect, afterAll, vi } from 'vitest';
-import request from "supertest";
-import mongoose from "mongoose";
-import { app, server } from "../../index";
+// import { describe, test, expect, afterAll, vi } from 'vitest';
+// import request from "supertest";
+// import mongoose from "mongoose";
+// import { app, server } from "../../index";
 
-vi.mock("firebase-admin", () => ({
-  default: {
-    apps: [],
-    initializeApp: vi.fn(),
-    credential: {
-        cert: vi.fn(),
-    },
-    auth: () => ({
-      verifyIdToken: vi.fn().mockResolvedValue({
-        uid: "test-user-id",
-        email: "test@mail.com",
-      }),
-    }),
-  },
-}));
+// vi.mock("firebase-admin", () => ({
+//   default: {
+//     apps: [],
+//     initializeApp: vi.fn(),
+//     credential: {
+//         cert: vi.fn(),
+//     },
+//     auth: () => ({
+//       verifyIdToken: vi.fn().mockResolvedValue({
+//         uid: "test-user-id",
+//         email: "test@mail.com",
+//       }),
+//     }),
+//   },
+// }));
 
-afterAll(async () => {
-  await mongoose.connection.close();
-  server.close();
-});
+// afterAll(async () => {
+//   await mongoose.connection.close();
+//   server.close();
+// });
 
 // describe("GET /gyms", () => {
 //   test("Get all gyms", async () => {
