@@ -1,5 +1,14 @@
 import admin from "firebase-admin";
 
+const fireBaseJson = process.env.FIREBASE_SERVICE_ACCOUNT_KEY;
+
+if (!fireBaseJson) {
+  throw new Error("FIREBASE_SERVICE_ACCOUNT_KEY is missing");
+}
+
+console.log(fireBaseJson);
+console.log("HERE....................");
+
 const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY!);
 
 admin.initializeApp({
