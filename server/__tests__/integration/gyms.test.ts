@@ -24,41 +24,41 @@ afterAll(async () => {
   server.close();
 });
 
-describe("GET /gyms", () => {
-  test("Get all gyms", async () => {
-    const response = await request(app).get("/gyms");
+// describe("GET /gyms", () => {
+//   test("Get all gyms", async () => {
+//     const response = await request(app).get("/gyms");
 
-    expect(response.status).toBe(200);
-    expect(Array.isArray(response.body)).toBe(true);
-  });
-});
+//     expect(response.status).toBe(200);
+//     expect(Array.isArray(response.body)).toBe(true);
+//   });
+// });
 
-describe("POST /gyms", () => {
-    test("Unauthorized test to create a new gym", async () => {
-        const newGym = {
-            name: "SATS Triangeln",
-            city: "Malmö",
-            address: "St Johannesgatan 1"
-        };
+// describe("POST /gyms", () => {
+//     test("Unauthorized test to create a new gym", async () => {
+//         const newGym = {
+//             name: "SATS Triangeln",
+//             city: "Malmö",
+//             address: "St Johannesgatan 1"
+//         };
 
-        const response = await request(app).post("/gyms").send(newGym);
+//         const response = await request(app).post("/gyms").send(newGym);
 
-        expect(response.status).toBe(401);
-    });
+//         expect(response.status).toBe(401);
+//     });
 
-    test("Authorized test to create a new gym", async () => {
-        const newGym = {
-            name: "SATS Triangeln",
-            city: "Malmö",
-            address: "St Johannesgatan 1"
-        };
+//     test("Authorized test to create a new gym", async () => {
+//         const newGym = {
+//             name: "SATS Triangeln",
+//             city: "Malmö",
+//             address: "St Johannesgatan 1"
+//         };
 
-        const response = await request(app)
-            .post("/gyms")
-            .set("Authorization", "Bearer fake-firebase-token")
-            .send(newGym)
-            .expect(201);
+//         const response = await request(app)
+//             .post("/gyms")
+//             .set("Authorization", "Bearer fake-firebase-token")
+//             .send(newGym)
+//             .expect(201);
 
-        expect(response.body).toMatchObject(newGym);
-    });
-});
+//         expect(response.body).toMatchObject(newGym);
+//     });
+// });

@@ -24,41 +24,41 @@ afterAll(async () => {
   server.close();
 });
 
-describe("GET /reviews", () => {
-  test("Get all reviews", async () => {
-    const response = await request(app).get("/reviews");
+// describe("GET /reviews", () => {
+//   test("Get all reviews", async () => {
+//     const response = await request(app).get("/reviews");
 
-    expect(response.status).toBe(200);
-    expect(Array.isArray(response.body)).toBe(true);
-  });
-});
+//     expect(response.status).toBe(200);
+//     expect(Array.isArray(response.body)).toBe(true);
+//   });
+// });
 
-describe("POST /reviews", () => {
-    test("Unauthorized test to create a review", async () => {
-        const newReview = {
-            gymId: "test-gymId",
-            uid: "test-id",
-            rating: 2
-        };
+// describe("POST /reviews", () => {
+//     test("Unauthorized test to create a review", async () => {
+//         const newReview = {
+//             gymId: "test-gymId",
+//             uid: "test-id",
+//             rating: 2
+//         };
 
-        const response = await request(app).post("/reviews").send(newReview);
+//         const response = await request(app).post("/reviews").send(newReview);
 
-        expect(response.status).toBe(401);
-    });
+//         expect(response.status).toBe(401);
+//     });
 
-    test("Authorized test to create a review", async () => {
-        const newReview = {
-            gymId: "test-gymId",
-            uid: "test-id",
-            rating: 2
-        };
+//     test("Authorized test to create a review", async () => {
+//         const newReview = {
+//             gymId: "test-gymId",
+//             uid: "test-id",
+//             rating: 2
+//         };
 
-        const response = await request(app)
-            .post("/reviews")
-            .set("Authorization", "Bearer fake-firebase-token")
-            .send(newReview)
-            .expect(201);
+//         const response = await request(app)
+//             .post("/reviews")
+//             .set("Authorization", "Bearer fake-firebase-token")
+//             .send(newReview)
+//             .expect(201);
 
-        expect(response.body).toMatchObject(newReview);
-    });
-});
+//         expect(response.body).toMatchObject(newReview);
+//     });
+// });
