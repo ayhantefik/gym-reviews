@@ -48,8 +48,12 @@ await mongoose.connect(mongoUrl);
 app.use("/gyms", gymRoute);
 app.use("/reviews", reviewRoute);
 
+app.get("/health", (_req, res) => {
+  res.status(200).send("OK");
+});
+
 await seedGyms();
 
-export const server = app.listen(PORT, () => {
+export const server = app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server running on port ${PORT}`);
 });
