@@ -15,15 +15,35 @@ app.use(express.json());
 
 const PORT = 3000;
 
-const CONNECTION_STRING = process.env.ATLAS_URL;
+const rawAtlasUrl = process.env.ATLAS_URL;
 
-console.log("CONNECTION_STRING ", CONNECTION_STRING)  
+console.log("ATLAS_URL raw:", rawAtlasUrl);
 
-if (!CONNECTION_STRING) {
-    throw new Error("CONNECTION_STRING is missing");
+if (!rawAtlasUrl) {
+  throw new Error("ATLAS_URL is missing");
 }
 
-mongoose.connect(CONNECTION_STRING);
+function resolveMongoUrl(value: string): string {
+  // AWS Secrets Manager key/value kan komma som JSON:
+  // {"ATLAS_URL":"mongodb+srv://..."}
+  if (value.trim().startsWith("{")) {
+    const parsed = JSON.parse(value);
+
+    if (!parsed.ATLAS_URL) {
+      throw new Error("ATLAS_URL is missing inside secret JSON");
+    }
+
+    return parsed.ATLAS_URL;
+  }
+
+  // Lokalt .env:
+  // ATLAS_URL=mongodb+srv://...
+  return value;
+}
+
+const mongoUrl = resolveMongoUrl(rawAtlasUrl);
+
+await mongoose.connect(mongoUrl);
 
 app.use("/gyms", gymRoute);
 app.use("/reviews", reviewRoute);
