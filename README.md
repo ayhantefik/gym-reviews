@@ -1,6 +1,22 @@
 # Gym reviews
 
-A full-stack booking application.
+Automating CI/CD Pipeline for a full-stack gym reviews application Deployment on AWS
+
+## CI/CD Workflow
+
+The deployment pipeline is automated using AWS CodePipeline.
+
+```text
+GitHub
+   ↓
+AWS CodePipeline
+   ↓
+AWS CodeBuild
+   ↓
+Amazon ECR
+   ↓
+Amazon ECS
+```
 
 ## Folder Structure
 
@@ -41,6 +57,10 @@ Settings → Secrets and variables → Actions
 Add these repository secrets:
 
 ## Backend
+```text
+ATLAS_URL
+```
+`ATLAS_URL` Atlas MongoDB connection string
 
 ```text
 FIREBASE_SERVICE_ACCOUNT
@@ -54,18 +74,23 @@ server/firebaseServiceAccountKey.json
 
 ---
 
-## Frontend
+## AWS Deployment
 
-Get these values from Firebase Console → Project Settings:
+Steps to follow:
 
 ```text
-VITE_FIREBASE_API_KEY
-VITE_FIREBASE_AUTH_DOMAIN
-VITE_FIREBASE_PROJECT_ID
-VITE_FIREBASE_STORAGE_BUCKET
-VITE_FIREBASE_MESSAGING_SENDER_ID
-VITE_FIREBASE_APP_ID
-VITE_API_URL
+1. Create an Amazon S3 bucket for the React frontend
+2. Create two Amazon ECR repositories:
+   - gym-reviews-client
+   - gym-reviews-server
+3. Create an Amazon ECS Cluster
+4. Create an ECS Task Definition
+5. Create an ECS Service
+6. Create an AWS CodeBuild project and connect it to GitHub
+7. Create an AWS CodePipeline
+8. Configure deployment for:
+   - React frontend → Amazon S3
+   - Backend API → Amazon ECS
 ```
 
 # Tests
