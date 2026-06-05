@@ -38,9 +38,5 @@ phases:
       - cat imagedefinitions.json
 artifacts:
   files:
-    base-directory: dist
-    files:
-      - '**/*'
-    # - imagedefinitions.json
-    # - target/springboot-aws-deploy.jar
+  - imagedefinitions.json
     
