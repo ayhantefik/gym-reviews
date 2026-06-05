@@ -1,4 +1,4 @@
-# Gym reviews
+<img width="962" height="752" alt="image" src="https://github.com/user-attachments/assets/95a05713-562c-4d7e-9cf0-d4068f653e26" /># Gym reviews
 
 Automating CI/CD Pipeline for a full-stack gym reviews application Deployment on AWS
 
@@ -94,6 +94,10 @@ Steps to follow:
 ```
 
 # Tests
+
+## CodePipeline
+
+<img width="962" height="752" alt="image" src="https://github.com/user-attachments/assets/295a900d-9cc9-4ffe-8eaa-5aebb6d8db19" />
 
 ## Unit tests
 
