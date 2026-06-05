@@ -12,10 +12,15 @@ GitHub
 AWS CodePipeline
    ↓
 AWS CodeBuild
-   ↓
-Amazon ECR
-   ↓
-Amazon ECS
+   ├── React Frontend
+   │      ↓
+   │   Amazon S3
+   │
+   └── Backend API
+          ↓
+      Amazon ECR
+          ↓
+      Amazon ECS
 ```
 
 ## Folder Structure
