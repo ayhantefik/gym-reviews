@@ -32,10 +32,9 @@ phases:
       - docker push $REPOSITORY_URI_SERVER:$IMAGE_TAG
       - echo Writing image definitions file...
       # Container name
-      - DOCKER_CONTAINER_NAME_CLIENT=gym-reviews-client
       - DOCKER_CONTAINER_NAME_SERVER=gym-reviews-server
-      - printf '[{"name":"%s","imageUri":"%s"}]' $DOCKER_CONTAINER_NAME_CLIENT $REPOSITORY_URI_CLIENT:$IMAGE_TAG \ $DOCKER_CONTAINER_NAME_SERVER $REPOSITORY_URI_SERVER:$IMAGE_TAG > imagedefinitions.json
-      - echo $DOCKER_CONTAINER_NAME
+      - printf '[{"name":"%s","imageUri":"%s"}]' $DOCKER_CONTAINER_NAME_SERVER $REPOSITORY_URI_SERVER:$IMAGE_TAG > imagedefinitions.json
+      - echo $DOCKER_CONTAINER_NAME_SERVER
       - echo printing imagedefinitions.json
       - cat imagedefinitions.json
 artifacts:
