@@ -21,10 +21,8 @@ function Home(){
         setIsLoading(true);
         const gymsData = await getGyms();
         setGyms(gymsData);
-        console.log("gymsData ", gymsData)
         const reviewsData = await getReviews();
         setReviews(reviewsData);
-        console.log("reviewsData ", reviewsData)
         setIsLoading(false);
     };
 

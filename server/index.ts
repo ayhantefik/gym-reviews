@@ -17,15 +17,12 @@ const PORT = 3000;
 
 const rawAtlasUrl = process.env.ATLAS_URL;
 
-console.log("ATLAS_URL raw:", rawAtlasUrl);
-
 if (!rawAtlasUrl) {
   throw new Error("ATLAS_URL is missing");
 }
 
 function resolveMongoUrl(value: string): string {
-  // AWS Secrets Manager key/value kan komma som JSON:
-  // {"ATLAS_URL":"mongodb+srv://..."}
+  // AWS Secrets Manager send key/value as JSON
   if (value.trim().startsWith("{")) {
     const parsed = JSON.parse(value);
 
@@ -35,9 +32,6 @@ function resolveMongoUrl(value: string): string {
 
     return parsed.ATLAS_URL;
   }
-
-  // Lokalt .env:
-  // ATLAS_URL=mongodb+srv://...
   return value;
 }
 
@@ -48,6 +42,7 @@ await mongoose.connect(mongoUrl);
 app.use("/gyms", gymRoute);
 app.use("/reviews", reviewRoute);
 
+// Health endpoint for load balancer
 app.get("/health", (_req, res) => {
   res.status(200).send("OK");
 });

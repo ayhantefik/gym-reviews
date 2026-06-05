@@ -3,12 +3,8 @@ phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR....
-      #checking version
       - aws --version
-      #- $(aws ecr get-login --region ap-south-1 --no-include-email)
-      # update below 
       - aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 368003223163.dkr.ecr.eu-north-1.amazonaws.com
-      - # Replace with this to your repository URI
       - REPOSITORY_URI_CLIENT=368003223163.dkr.ecr.eu-north-1.amazonaws.com/gym-reviews-client
       - REPOSITORY_URI_SERVER=368003223163.dkr.ecr.eu-north-1.amazonaws.com/gym-reviews-server
       - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
@@ -16,14 +12,6 @@ phases:
     commands:
       - echo Build started on `date`
       - cd client
-
-      # - echo "VITE_FIREBASE_API_KEY=$VITE_FIREBASE_API_KEY" >> .env
-      # - echo "VITE_FIREBASE_AUTH_DOMAIN=$VITE_FIREBASE_AUTH_DOMAIN" >> .env
-      # - echo "VITE_FIREBASE_PROJECT_ID=$VITE_FIREBASE_PROJECT_ID" >> .env
-      # - echo "VITE_FIREBASE_STORAGE_BUCKET=$VITE_FIREBASE_STORAGE_BUCKET" >> .env
-      # - echo "VITE_FIREBASE_MESSAGING_SENDER_ID=$VITE_FIREBASE_MESSAGING_SENDER_ID" >> .env
-      # - echo "VITE_FIREBASE_APP_ID=$VITE_FIREBASE_APP_ID" >> .env
-
       - npm install
       - npm run build
       - aws s3 sync dist/ s3://gym-reviews-bucket --delete
@@ -42,7 +30,7 @@ phases:
       - docker push $REPOSITORY_URI_SERVER:latest
       - docker push $REPOSITORY_URI_SERVER:$IMAGE_TAG
       - echo Writing image definitions file...
-      # Give your container name
+      # Container name
       - DOCKER_CONTAINER_NAME=gym-reviews
       - printf '[{"name":"%s","imageUri":"%s"}]' $DOCKER_CONTAINER_NAME $REPOSITORY_URI_CLIENT:$IMAGE_TAG \ $REPOSITORY_URI_SERVER:$IMAGE_TAG > imagedefinitions.json
       - echo $DOCKER_CONTAINER_NAME
@@ -50,5 +38,9 @@ phases:
       - cat imagedefinitions.json
 artifacts:
   files:
-    - imagedefinitions.json
-    - target/springboot-aws-deploy.jar
+    base-directory: dist
+    files:
+      - '**/*'
+    # - imagedefinitions.json
+    # - target/springboot-aws-deploy.jar
+    
