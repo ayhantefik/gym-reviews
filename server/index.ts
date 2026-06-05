@@ -42,9 +42,9 @@ await mongoose.connect(mongoUrl);
 app.use("/gyms", gymRoute);
 app.use("/reviews", reviewRoute);
 
-// Health endpoint for load balancer
+// Health check endpoint for load balancer
 app.get("/health", (_req, res) => {
-  res.status(200).send("FUNKAR");
+  res.status(200).send("OK");
 });
 
 await seedGyms();
