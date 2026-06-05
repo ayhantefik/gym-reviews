@@ -86,11 +86,10 @@ Steps to follow:
 3. Create an Amazon ECS Cluster
 4. Create an ECS Task Definition
 5. Create an ECS Service
-6. Create an AWS CodeBuild project and connect it to GitHub
-7. Create an AWS CodePipeline
-8. Configure deployment for:
-   - React frontend → Amazon S3
-   - Backend API → Amazon ECS
+6. Configure and update the buildspec.yml file
+7. Configure and update the Docker files
+8. Create an AWS CodeBuild project and connect it to GitHub
+9. Create an AWS CodePipeline
 ```
 
 # Tests
