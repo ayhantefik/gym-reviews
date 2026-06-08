@@ -44,7 +44,7 @@ app.use("/reviews", reviewRoute);
 
 // Health check endpoint for load balancer
 app.get("/health", (_req, res) => {
-  res.status(200).send("test2");
+  res.status(200).send("test");
 });
 
 await seedGyms();
