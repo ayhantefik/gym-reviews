@@ -1,4 +1,4 @@
-FROM node:lts-alpine3.23
+FROM 612555043829.dkr.ecr.us-east-1.amazonaws.com/nginx:alpine
 
 WORKDIR /usr/src/app
 
