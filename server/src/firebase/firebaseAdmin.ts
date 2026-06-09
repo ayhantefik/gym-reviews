@@ -9,11 +9,7 @@ const fireBaseJson = process.env.FIREBASE_SERVICE_ACCOUNT_KEY_PATH;
 let serviceAccount;
 
 if (fireBaseJson) {
-  const parsed = JSON.parse(fireBaseJson);
-
-  serviceAccount = parsed.FIREBASE_SERVICE_ACCOUNT_KEY_PATH;
-
-  serviceAccount = JSON.parse(`{${serviceAccount}}`);
+  serviceAccount = JSON.parse(fireBaseJson);
 
   serviceAccount.private_key = serviceAccount.private_key.replace(/\\n/g, "\n");
 } else {
