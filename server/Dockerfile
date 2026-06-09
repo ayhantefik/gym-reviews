@@ -1,4 +1,4 @@
-FROM 612555043829.dkr.ecr.us-east-1.amazonaws.com/nginx:alpine
+FROM public.ecr.aws/nginx/nginx:alpine
 
 WORKDIR /usr/src/app
 
