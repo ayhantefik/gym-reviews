@@ -4,9 +4,9 @@ phases:
     commands:
       - echo Logging in to Amazon ECR....
       - aws --version
-      - aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 368003223163.dkr.ecr.eu-central-1.amazonaws.com
-      - REPOSITORY_URI_CLIENT=368003223163.dkr.ecr.eu-central-1.amazonaws.com/gymreviews-client
-      - REPOSITORY_URI_SERVER=368003223163.dkr.ecr.eu-central-1.amazonaws.com/gymreviews-server
+      - aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 612555043829.dkr.ecr.us-east-1.amazonaws.com
+      - REPOSITORY_URI_CLIENT=612555043829.dkr.ecr.us-east-1.amazonaws.com/gym-reviews-client
+      - REPOSITORY_URI_SERVER=612555043829.dkr.ecr.us-east-1.amazonaws.com/gym-reviews-server
       - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
   build:
     commands:
