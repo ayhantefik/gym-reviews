@@ -11,6 +11,8 @@ let serviceAccount;
 if (fireBaseJson) {
   serviceAccount = JSON.parse(fireBaseJson);
 
+  console.log("fireBaseJson ", fireBaseJson)
+
   serviceAccount.private_key = serviceAccount.private_key.replace(/\\n/g, "\n");
 } else {
   const filePath = path.join(process.cwd(), "firebaseServiceAccountKey.json");
