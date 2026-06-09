@@ -26,3 +26,4 @@ if (fireBaseJson) {
   }
 
   serviceAccount = JSON.parse(fs.readFileSync(filePath, "utf8"));
+}
