@@ -2,14 +2,18 @@ import admin from "firebase-admin";
 import fs from "fs";
 import path from "path";
 
-let serviceAccount;
-
 const fireBaseJson = process.env.FIREBASE_SERVICE_ACCOUNT_KEY_PATH;
 
 // FIREBASE_SERVICE_ACCOUNT_KEY_PATH is stored as an AWS secret. For local development the application falls back to firebaseServiceAccountKey.json
 
+let serviceAccount;
+
 if (fireBaseJson) {
-  serviceAccount = JSON.parse(`{${fireBaseJson}}`);
+  const parsed = JSON.parse(fireBaseJson);
+
+  serviceAccount = parsed.FIREBASE_SERVICE_ACCOUNT_KEY_PATH;
+
+  serviceAccount = JSON.parse(`{${serviceAccount}}`);
 
   serviceAccount.private_key = serviceAccount.private_key.replace(/\\n/g, "\n");
 } else {
@@ -17,17 +21,8 @@ if (fireBaseJson) {
 
   if (!fs.existsSync(filePath)) {
     throw new Error(
-      "Neither FIREBASE_SERVICE_ACCOUNT_KEY nor firebaseServiceAccountKey.json exists"
+      "Neither FIREBASE_SERVICE_ACCOUNT_KEY_PATH nor firebaseServiceAccountKey.json exists"
     );
   }
 
   serviceAccount = JSON.parse(fs.readFileSync(filePath, "utf8"));
-}
-
-if (!admin.apps.length) {
-  admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-  });
-}
-
-export default admin;
