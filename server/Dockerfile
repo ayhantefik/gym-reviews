@@ -1,4 +1,4 @@
-FROM public.ecr.aws/nginx/nginx:alpine
+FROM public.ecr.aws/docker/library/node:20-alpine
 
 WORKDIR /usr/src/app
 
