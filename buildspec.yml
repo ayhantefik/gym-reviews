@@ -16,11 +16,11 @@ phases:
       - npm run build
       - aws s3 sync dist/ s3://gym-reviews-bucket2 --delete
       - docker build -t $REPOSITORY_URI_CLIENT:latest .
-      - docker tag $REPOSITORY_URI_CLIENT:latest $REPOSITORY_URI_CLIENT:$IMAGE_TAG
+      - docker tag $REPOSITORY_URI_CLIENT:latest $REPOSITORY_URI_CLIENT:$IMAGE_TAG .
       - cd ..
       - cd server
       - docker build -t $REPOSITORY_URI_SERVER:latest .
-      - docker tag $REPOSITORY_URI_SERVER:latest $REPOSITORY_URI_SERVER:$IMAGE_TAG
+      - docker tag $REPOSITORY_URI_SERVER:latest $REPOSITORY_URI_SERVER:$IMAGE_TAG .
       - cd ..
   post_build:
     commands:
