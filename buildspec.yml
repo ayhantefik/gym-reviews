@@ -18,9 +18,13 @@ phases:
       - docker build -t $REPOSITORY_URI_CLIENT:latest .
       - docker tag $REPOSITORY_URI_CLIENT:latest $REPOSITORY_URI_CLIENT:$IMAGE_TAG
       - cd ..
+      # Server
       - cd server
-      - docker build -t $REPOSITORY_URI_SERVER:latest .
-      - docker tag $REPOSITORY_URI_SERVER:latest $REPOSITORY_URI_SERVER:$IMAGE_TAG
+      - echo Current directory:
+      - pwd
+      - echo Files:
+      - ls -la
+      - docker build -t $REPOSITORY_URI_SERVER:latest -t $REPOSITORY_URI_SERVER:$IMAGE_TAG .
       - cd ..
   post_build:
     commands:
