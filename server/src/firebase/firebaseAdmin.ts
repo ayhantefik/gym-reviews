@@ -9,15 +9,15 @@ const fireBaseJson = process.env.FIREBASE_SERVICE_ACCOUNT_KEY_PATH;
 // FIREBASE_SERVICE_ACCOUNT_KEY_PATH is stored as an AWS secret. For local development the application falls back to firebaseServiceAccountKey.json
 
 if (fireBaseJson) {
-  console.log("fireBaseJson.........");
-  console.log("fireBaseJson ", fireBaseJson);
-  serviceAccount = JSON.parse(fireBaseJson);
+  serviceAccount = JSON.parse(`{${fireBaseJson}}`);
+
+  serviceAccount.private_key = serviceAccount.private_key.replace(/\\n/g, "\n");
 } else {
   const filePath = path.join(process.cwd(), "firebaseServiceAccountKey.json");
 
   if (!fs.existsSync(filePath)) {
     throw new Error(
-      "Neither FIREBASE_SERVICE_ACCOUNT_KEY_PATH nor firebaseServiceAccountKey.json exists"
+      "Neither FIREBASE_SERVICE_ACCOUNT_KEY nor firebaseServiceAccountKey.json exists"
     );
   }
 
