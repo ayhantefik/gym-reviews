@@ -27,3 +27,11 @@ if (fireBaseJson) {
 
   serviceAccount = JSON.parse(fs.readFileSync(filePath, "utf8"));
 }
+
+if (!admin.apps.length) {
+  admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+  });
+}
+
+export default admin;
