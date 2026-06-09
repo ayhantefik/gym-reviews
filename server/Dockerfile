@@ -1,4 +1,4 @@
-FROM node:lts-alpine3.23
+FROM public.ecr.aws/nginx/nginx:alpine
 
 WORKDIR /usr/src/app
 
