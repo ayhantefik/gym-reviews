@@ -6,16 +6,40 @@ const fireBaseJson = process.env.FIREBASE_SERVICE_ACCOUNT_KEY_PATH;
 
 // FIREBASE_SERVICE_ACCOUNT_KEY_PATH is stored as an AWS secret. For local development the application falls back to firebaseServiceAccountKey.json
 
-let serviceAccount;
+let serviceAccount: any;
 
 if (fireBaseJson) {
-  serviceAccount = JSON.parse(fireBaseJson);
+  try {
+    let parsed: any = JSON.parse(fireBaseJson);
 
-  console.log("fireBaseJson ", fireBaseJson)
+    // Hantera om AWS returnerar en serialiserad JSON-sträng
+    while (typeof parsed === "string") {
+      parsed = JSON.parse(parsed);
+    }
 
-  serviceAccount.private_key = serviceAccount.private_key.replace(/\\n/g, "\n");
+    serviceAccount = parsed;
+
+    if (!serviceAccount.private_key) {
+      throw new Error(
+        `Firebase service account saknar private_key. Keys: ${Object.keys(
+          serviceAccount
+        ).join(", ")}`
+      );
+    }
+
+    serviceAccount.private_key = serviceAccount.private_key.replace(
+      /\\n/g,
+      "\n"
+    );
+  } catch (error) {
+    console.error("Failed to parse Firebase service account:", error);
+    throw error;
+  }
 } else {
-  const filePath = path.join(process.cwd(), "firebaseServiceAccountKey.json");
+  const filePath = path.join(
+    process.cwd(),
+    "firebaseServiceAccountKey.json"
+  );
 
   if (!fs.existsSync(filePath)) {
     throw new Error(
