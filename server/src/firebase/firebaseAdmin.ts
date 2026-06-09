@@ -14,9 +14,7 @@ if (fireBaseJson) {
 
   console.log("parsed ", parsed)
 
-  serviceAccount = parsed.FIREBASE_SERVICE_ACCOUNT_KEY_PATH;
-
-  serviceAccount = JSON.parse(`{${serviceAccount}}`);
+  serviceAccount = JSON.parse(parsed.FIREBASE_SERVICE_ACCOUNT_KEY_PATH);
 
   serviceAccount.private_key = serviceAccount.private_key.replace(/\\n/g, "\n");
 } else {
