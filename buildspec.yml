@@ -24,6 +24,7 @@ phases:
       - cd ..
   post_build:
     commands:
+      - set -e
       - echo Build completed on `date`
       - echo pushing to repo
       - docker push $REPOSITORY_URI_CLIENT:latest
